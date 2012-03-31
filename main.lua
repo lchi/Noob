@@ -9,6 +9,7 @@ function love.load()
   y = 50
   speed = 200
 
+  bg = love.graphics.newImage("background.png")
   world = love.physics.newWorld(0, 0, worldWidth, 650) --create a world for the bodies to exist in with width and height of 650
   world:setGravity(0, grav) --the x component of the gravity will be 0, and the y component of the gravity will be 700
   world:setMeter(64) --the height of a meter in this world will be 64px
@@ -26,8 +27,8 @@ function love.load()
   objects.rightWall.body = love.physics.newBody(world, worldWidth-25, worldHeight/2, 0, 0) --remember, the body anchors from the center of the shape
   objects.rightWall.shape = love.physics.newRectangleShape(objects.rightWall.body, 0, 0, 50, worldHeight, 0) --anchor the shape to the body, and make it a width of 650 and a height of 50
   objects.leftWall = {}
-  objects.leftWall.body = love.physics.newBody(world, 25, worldHeight/2, 0, 0) --remember, the body anchors from the center of the shape
-  objects.leftWall.shape = love.physics.newRectangleShape(objects.leftWall.body, 0, 0, 50, worldHeight, 0) --anchor the shape to the body, and make it a width of 650 and a height of 50
+  objects.leftWall.body = love.physics.newBody(world, 5, worldHeight/2, 0, 0) --remember, the body anchors from the center of the shape
+  objects.leftWall.shape = love.physics.newRectangleShape(objects.leftWall.body, 0, 2, 50, worldHeight, 0) --anchor the shape to the body, and make it a width of 650 and a height of 50
 
   objects.leftWall.shape:setFriction(0)
   objects.rightWall.shape:setFriction(0)
@@ -71,9 +72,7 @@ function love.load()
   end
 
   world:setCallbacks(add, nil, rem, nil)
-  hamsterImg = love.graphics.newImage("icon_hamster.gif")
   canJump = false
-  bg = love.graphics.newImage("background.png")
 end
 
 function add(a, b, coll)
@@ -162,18 +161,18 @@ end
 
 function love.draw()
   camera:set()
+  love.graphics.setColor(255, 255, 255)
   love.graphics.draw(bg, 0, 0)
   --love.graphics.draw(hamster, x, y)
-  love.graphics.setColor(72, 160, 14) -- set the drawing color to green for the ground
+  love.graphics.setColor(238, 130, 238)
   love.graphics.polygon("fill", objects.ground.shape:getPoints()) -- draw a "filled in" polygon using the ground's coordinates
-  love.graphics.setColor(72, 0, 1)
   love.graphics.polygon("fill", objects.leftWall.shape:getPoints()) -- draw a "filled in" polygon using the ground's coordinates
   love.graphics.polygon("fill", objects.rightWall.shape:getPoints()) -- draw a "filled in" polygon using the ground's coordinates
 
-  love.graphics.setColor(193, 47, 14) --set the drawing color to red for the ball
+  love.graphics.setColor(255, 0, 0) --set the drawing color to red for the ball
   love.graphics.circle("fill", objects.hamster.body:getX(), objects.hamster.body:getY(), objects.hamster.shape:getRadius(), 20) -- we want 20 line segments to form the "circle"
 
-  love.graphics.setColor(255,255,255)
+  love.graphics.setColor(0,0,0)
 
   for i=1,numFollow do
     love.graphics.circle("fill", objects.follow[i].body:getX(), objects.follow[i].body:getY(), objects.follow[i].shape:getRadius(), 10)
@@ -187,7 +186,7 @@ function love.draw()
   for i=1,2 do
     love.graphics.setColor(100,100,100)
     love.graphics.polygon("fill", objects.platform[i].shape:getPoints())
-    love.graphics.setColor(141,123,3)
+    love.graphics.setColor(0,0,138)
     love.graphics.polygon("fill", objects.topPlatform[i].shape:getPoints())
   end
   camera:unset()
