@@ -9,7 +9,7 @@ function love.load()
   y = 50
   speed = 200
 
-  bg = love.graphics.newImage("background.png")
+  bg = love.graphics.newImage("images/background.png")
   world = love.physics.newWorld(0, 0, worldWidth, 650) --create a world for the bodies to exist in with width and height of 650
   world:setGravity(0, grav) --the x component of the gravity will be 0, and the y component of the gravity will be 700
   world:setMeter(64) --the height of a meter in this world will be 64px
