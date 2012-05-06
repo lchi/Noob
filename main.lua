@@ -9,7 +9,7 @@ function love.load()
   y = 50
   speed = 200
 
-  bg = love.graphics.newImage("images/background.png")
+  --bg = love.graphics.newImage("images/background.png")
   world = love.physics.newWorld(0, 0, worldWidth, 650) --create a world for the bodies to exist in with width and height of 650
   world:setGravity(0, grav) --the x component of the gravity will be 0, and the y component of the gravity will be 700
   world:setMeter(64) --the height of a meter in this world will be 64px
@@ -162,7 +162,7 @@ end
 function love.draw()
   camera:set()
   love.graphics.setColor(255, 255, 255)
-  love.graphics.draw(bg, 0, 0)
+  --love.graphics.draw(bg, 0, 0)
   --love.graphics.draw(hamster, x, y)
   love.graphics.setColor(238, 130, 238)
   love.graphics.polygon("fill", objects.ground.shape:getPoints()) -- draw a "filled in" polygon using the ground's coordinates
